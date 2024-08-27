@@ -7,6 +7,7 @@ import authRoutes from './routes/authRoutes.js';
 import categoryRoutes from './routes/categoryRoutes.js';
 import productRoutes from './routes/productRoutes.js';
 import cors from "cors";
+import path from "path";
 
 //configure env
  dotenv.config();
@@ -18,6 +19,9 @@ connectDB();
 const app = express();
 
 //middlewares
+const _dirname =path.dirname("");
+const buildPath = path.join(_dirname, "./client/build");
+app.use(express.static(buildPath));
 app.use(cors());
 app.use(express.json())
 app.use(morgan('dev'))
